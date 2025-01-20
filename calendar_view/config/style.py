@@ -16,14 +16,14 @@ day_width = 400
 padding_horizontal = 60
 padding_vertical = 30
 
-title_font = image_font(50)
-title_color = 'black'
-title_padding_left = 30
-title_padding_right = 30
-title_padding_top = 30
-title_padding_bottom = 20
+title_font = image_font(0)
+title_color = (0, 0, 0, 0)
+title_padding_left = 0
+title_padding_right = 0
+title_padding_top = 0
+title_padding_bottom = 0
 
-hour_number_font = image_font(22)
+hour_number_font = image_font(30)
 hour_number_color = 'black'
 
 day_of_week_font = image_font(28)
@@ -35,11 +35,11 @@ line_hour_color = (180, 180, 180, 210)
 line_hour_width = 2
 
 event_border_width = 4
-event_radius = 14
+event_radius = 0
 event_border_default = (120, 180, 120, 240)
 event_fill_default = (196, 234, 188, 210)
 
-event_title_font = image_font(36)
+event_title_font = image_font(26)
 event_title_color = 'black'
 event_notes_font = image_font(26)
 event_notes_color = 'gray'
