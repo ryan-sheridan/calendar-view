@@ -30,12 +30,16 @@ class EventStyle(object):
 
 class EventStyles(object):
     """
-    Predefined colors
+    Predefined colors - shadcn dark theme palette
     """
-    GREEN = EventStyle(event_border=(120, 180, 120, 240), event_fill=(196, 234, 188, 180))
-    RED = EventStyle(event_border=(220, 50, 50, 240), event_fill=(220, 50, 50, 180))
-    BLUE = EventStyle(event_border=(100, 100, 220, 240), event_fill=(150, 150, 234, 180))
-    GRAY = EventStyle(event_border=(110, 110, 110, 240), event_fill=(200, 200, 200, 190))
+    # Muted blue for lectures - shadcn blue-600/blue-900
+    BLUE = EventStyle(event_border=(37, 99, 235, 255), event_fill=(30, 58, 138, 240))
+    # Amber/orange for labs - shadcn amber-600/amber-900
+    AMBER = EventStyle(event_border=(217, 119, 6, 255), event_fill=(120, 53, 15, 240))
+    # Legacy color mappings
+    RED = EventStyle(event_border=(217, 119, 6, 255), event_fill=(120, 53, 15, 240))  # Map to AMBER
+    GREEN = EventStyle(event_border=(37, 99, 235, 255), event_fill=(30, 58, 138, 240))  # Map to BLUE
+    GRAY = EventStyle(event_border=(71, 85, 105, 255), event_fill=(30, 41, 59, 240))  # Slate-600/slate-800
 
 
 class Event(object):
