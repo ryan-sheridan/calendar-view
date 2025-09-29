@@ -10,12 +10,18 @@ font_path: str = 'Roboto-Regular.ttf'
 
 
 def image_font(size: int):
-    res = files('calendar_view.resources.fonts') / font_path
-    with as_file(res) as tmp_path:
-        return ImageFont.truetype(str(tmp_path), size)
+    # Try to use Helvetica Neue on macOS, fallback to Roboto
+    try:
+        return ImageFont.truetype('/System/Library/Fonts/HelveticaNeue.ttc', size)
+    except (OSError, IOError):
+        res = files('calendar_view.resources.fonts') / font_path
+        with as_file(res) as tmp_path:
+            return ImageFont.truetype(str(tmp_path), size)
 
 
-image_bg = (255, 255, 255, 255)
+# Shadcn dark theme colors
+# Background: Very dark blue-black (hsl(222.2 84% 4.9%))
+image_bg = (2, 8, 23, 255)  # #020817
 
 hour_height = 50
 day_width = 400
@@ -23,34 +29,37 @@ padding_horizontal = 60
 padding_vertical = 30
 
 title_font = image_font(50)
-title_color = 'black'
+title_color = (248, 250, 252, 255)  # White/slate-50
 title_padding_left = 30
 title_padding_right = 30
 title_padding_top = 30
 title_padding_bottom = 20
 
 hour_number_font = image_font(22)
-hour_number_color = 'black'
+hour_number_color = (226, 232, 240, 255)  # Slate-200
 
 day_of_week_font = image_font(28)
-day_of_week_color = 'black'
+day_of_week_color = (248, 250, 252, 255)  # White/slate-50
 
-line_day_color = (150, 150, 150, 255)
-line_day_width = 5
-line_hour_color = (180, 180, 180, 210)
-line_hour_width = 2
+# Subtle borders - dark gray with low opacity
+line_day_color = (51, 65, 85, 180)  # Slate-700 with transparency
+line_day_width = 2
+line_hour_color = (51, 65, 85, 120)  # Slate-700 more transparent
+line_hour_width = 1
 
-event_border_width = 4
-event_radius = 14
-event_border_default = (120, 180, 120, 240)
-event_fill_default = (196, 234, 188, 210)
+# Event styling with rounded corners like shadcn
+event_border_width = 2
+event_radius = 8  # Shadcn uses subtle rounded corners (rounded-md)
+event_border_default = (71, 85, 105, 255)  # Slate-600
+event_fill_default = (30, 41, 59, 240)  # Slate-800 with slight transparency
 
-event_title_font = image_font(36)
-event_title_color = 'black'
-event_notes_font = image_font(26)
-event_notes_color = 'gray'
-event_padding: int = 20
-event_title_margin: int = 20
+# Smaller font sizes for event text, all white
+event_title_font = image_font(20)  # Reduced from 36
+event_title_color = (248, 250, 252, 255)  # White
+event_notes_font = image_font(16)  # Reduced from 26
+event_notes_color = (203, 213, 225, 255)  # Slate-300 (lighter gray)
+event_padding: int = 12  # Tighter padding for compact look
+event_title_margin: int = 8  # Reduced margin
 
 legend_spacing = 20
 legend_padding_top = 40
@@ -58,6 +67,6 @@ legend_padding_bottom = 70
 legend_padding_left = 70
 legend_padding_right = 40
 legend_name_font = image_font(28)
-legend_name_color = 'black'
+legend_name_color = (248, 250, 252, 255)  # White
 
 # https://stackoverflow.com/questions/7510313/transparent-png-in-pil-turns-out-not-to-be-transparent
