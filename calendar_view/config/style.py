@@ -7,12 +7,15 @@ except ImportError:
 
 
 font_path: str = 'Roboto-Regular.ttf'
+helvetica_path: str = 'HelveticaNeue.ttc'
 
 
 def image_font(size: int):
-    # Try to use San Francisco (iOS system font) on macOS, fallback to Roboto
+    # Try to use bundled Helvetica Neue, fallback to Roboto
     try:
-        return ImageFont.truetype('/System/Library/Fonts/SFNS.ttf', size)
+        res = files('calendar_view.resources.fonts') / helvetica_path
+        with as_file(res) as tmp_path:
+            return ImageFont.truetype(str(tmp_path), size)
     except (OSError, IOError):
         res = files('calendar_view.resources.fonts') / font_path
         with as_file(res) as tmp_path:
@@ -53,9 +56,9 @@ event_border_default = (71, 85, 105, 255)  # Slate-600
 event_fill_default = (30, 41, 59, 240)  # Slate-800 with slight transparency
 
 # Smaller font sizes for event text, all white
-event_title_font = image_font(20)  # Reduced from 36
+event_title_font = image_font(21)  # Increased by 1
 event_title_color = (255, 255, 255, 255)  # Pure white
-event_notes_font = image_font(16)  # Reduced from 26
+event_notes_font = image_font(17)  # Increased by 1
 event_notes_color = (255, 255, 255, 255)  # Pure white
 event_padding: int = 12  # Tighter padding for compact look
 event_title_margin: int = 8  # Reduced margin
